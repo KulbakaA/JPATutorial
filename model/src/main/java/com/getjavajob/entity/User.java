@@ -2,6 +2,7 @@ package com.getjavajob.entity;
 
 import com.getjavajob.entity.base.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,7 @@ public class User extends AbstractEntity {
 
     private String name;
     private String lastName;
+    @Column(nullable = false,unique = true,length = 32)
     private String email;
     private List<Phone> listOfPhones;
     private List<User> friends;
