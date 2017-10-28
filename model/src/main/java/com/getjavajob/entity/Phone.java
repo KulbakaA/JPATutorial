@@ -2,6 +2,9 @@ package com.getjavajob.entity;
 
 import com.getjavajob.entity.base.AbstractEntity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Phone extends AbstractEntity {
 
 	private String number;
@@ -34,5 +37,12 @@ public class Phone extends AbstractEntity {
 	@Override
 	public int hashCode() {
 		return number != null ? number.hashCode() : 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Phone{" +
+				"number='" + number + '\'' +
+				'}';
 	}
 }
