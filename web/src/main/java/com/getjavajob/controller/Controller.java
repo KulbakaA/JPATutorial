@@ -1,5 +1,8 @@
 package com.getjavajob.controller;
 
-@org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@org.springframework.stereotype.Controller()
+@RequestMapping(value = "/")
 public class Controller {
 }
