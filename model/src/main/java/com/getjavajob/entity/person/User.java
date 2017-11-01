@@ -1,9 +1,10 @@
-package com.getjavajob.entity;
+package com.getjavajob.entity.person;
 
 import com.getjavajob.entity.base.AbstractEntity;
+import com.getjavajob.entity.valueobject.Gender;
+import com.getjavajob.entity.valueobject.Phone;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,8 +15,11 @@ public class User extends AbstractEntity {
     private String lastName;
     @Column(nullable = false,unique = true,length = 32)
     private String email;
+    @Transient
     private List<Phone> listOfPhones;
+    @Transient
     private List<User> friends;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     public User() {
@@ -79,5 +83,20 @@ public class User extends AbstractEntity {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", listOfPhones=" + listOfPhones +
+                ", friends=" + friends +
+                ", gender=" + gender +
+                ", id=" + id +
+                ", insertTime=" + insertTime +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }

@@ -12,29 +12,29 @@ public class AbstractEntity {
     protected LocalDateTime insertTime;
     protected LocalDateTime updateTime;
 
-    protected Long getId() {
+    public Long getId() {
         return id;
     }
 
-    protected void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Column(name = "INSERT_TIME", nullable = false, updatable = false)
-    protected LocalDateTime getInsertTime() {
+    public LocalDateTime getInsertTime() {
         return insertTime;
     }
 
-    protected void setInsertTime(LocalDateTime insertTime) {
+    public void setInsertTime(LocalDateTime insertTime) {
         this.insertTime = insertTime;
     }
 
     @Column(name = "UPDATE_TIME", insertable = false)
-    protected LocalDateTime getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    protected void setUpdateTime(LocalDateTime updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 }

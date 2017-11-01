@@ -1,4 +1,4 @@
-package com.getjavajob.entity;
+package com.getjavajob.entity.valueobject;
 
 import com.getjavajob.entity.base.AbstractEntity;
 

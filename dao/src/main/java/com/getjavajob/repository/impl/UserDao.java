@@ -1,35 +1,22 @@
 package com.getjavajob.repository.impl;
 
-import com.getjavajob.repository.IDao;
-import org.springframework.stereotype.Repository;
+import com.getjavajob.entity.person.User;
+import com.getjavajob.repository.IUserDao;
 
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
-@Repository
-public class UserDao implements IDao {
+@Named("userDaoImpl")
+public class UserDao extends AbstractDao<User> implements IUserDao, Serializable, Cloneable {
 
-    
-    public List fetchAll() {
+    @Override
+    public String findByEmail() {
         return null;
     }
 
-    public Object getById() {
+    @Override
+    public List<String> getAllEmails() {
         return null;
-    }
-
-    public void insert(Object entity) {
-
-    }
-
-    public void deleteAll() {
-
-    }
-
-    public void deleteById(Long id) {
-
-    }
-
-    public void update(Object entity) {
-
     }
 }

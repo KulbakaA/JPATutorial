@@ -6,7 +6,7 @@ public interface IDao<T> {
 
     List<T> fetchAll();
 
-    T getById();
+    T getById(Long id);
 
     void insert(T entity);
 

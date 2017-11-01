@@ -5,15 +5,29 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+    <jee:jndi-lookup id="dataSource" jndi-name="jndi_local_resource" expected-type="javax.sql.DataSource"/>
 
     <context:component-scan base-package="com.getjavajob.repository.impl"/>
 
 
-    <bean id="entityManagerFactory">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="with_out_xml"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.getjavajob.entity</value>
+            </list>
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
+                <property name="generateDdl" value="true"/>
+            </bean>
+        </property>
 
 
     </bean>
-
 
 
 </beans>

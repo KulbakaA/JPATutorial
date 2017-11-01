@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <ResourceLink
+            name="jndi_local_resource"
+            global="jdbc_global_jpa_tutorial"
+            type="javax.sql.DataSource"
+    />
+
+</Context>
