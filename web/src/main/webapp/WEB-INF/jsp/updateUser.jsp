@@ -21,7 +21,13 @@
     <br/>
     <label for="email"> <input id="email" name="email" type="email" value="${userForUpdate.email}"> </label>
     <br/>
-    <label for="gender"> <input id="gender" name="gender" type="text" value="${userForUpdate.gender}"> </label>
+    <label for="gender">
+        <select id="gender" name="gender">
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+        </select>
+
+    </label>
     <br/>
     <label for="save"> <input type="submit" id="save" name="save" value="Save it."> </label>
 </form>
