@@ -57,11 +57,12 @@ public abstract class AbstractDao<T> implements IDao<T> {
     public void insert(T entity) {
         EntityManager entityManager = this.factory.createEntityManager();
         try {
-            entityManager.getTransaction().begin();
+//            entityManager.getTransaction().begin();
+            System.out.println(entityManager.getTransaction().isActive());
             entityManager.persist(entity);
-            entityManager.getTransaction().commit();
+//            entityManager.getTransaction().commit();
         } finally {
-            entityManager.getTransaction().rollback();
+//            entityManager.getTransaction().rollback();
         }
     }
 
@@ -85,8 +86,8 @@ public abstract class AbstractDao<T> implements IDao<T> {
 
     @Override
     public void update(T entity) {
-        System.out.println("tx");
         EntityManager entityManager = factory.createEntityManager();
+        System.out.println(entityManager.getTransaction().isActive());
         entityManager.merge(entity);
     }
 

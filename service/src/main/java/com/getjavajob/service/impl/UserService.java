@@ -20,6 +20,7 @@ public class UserService implements IService<User> {
         this.iDao = iDao;
     }
 
+    @Override
     public List<User> fetchAll() {
         return this.iDao.fetchAll();
     }
@@ -29,9 +30,9 @@ public class UserService implements IService<User> {
         return this.iDao.getById(id);
     }
 
+    @Override
     @Transactional
     public void insert(User entity) {
-        setDate(entity);
         this.iDao.insert(entity);
     }
 
@@ -40,16 +41,19 @@ public class UserService implements IService<User> {
         user.setUpdateTime(LocalDateTime.now());
     }
 
+    @Override
     @Transactional
     public void deleteAll() {
 
     }
 
+    @Override
     @Transactional
     public void deleteById(Long id) {
 
     }
 
+    @Override
     @Transactional
     public void update(User entity) {
         this.iDao.update(entity);
