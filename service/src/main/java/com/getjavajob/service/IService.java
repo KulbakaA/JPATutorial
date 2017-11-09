@@ -1,7 +1,9 @@
 package com.getjavajob.service;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 public interface IService<T> {
 
     List<T> fetchAll();

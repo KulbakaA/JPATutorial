@@ -3,6 +3,7 @@ package com.getjavajob.service.impl;
 import com.getjavajob.entity.person.User;
 import com.getjavajob.repository.IDao;
 import com.getjavajob.service.IService;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -54,7 +55,7 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public void update(User entity) {
         this.iDao.update(entity);
     }

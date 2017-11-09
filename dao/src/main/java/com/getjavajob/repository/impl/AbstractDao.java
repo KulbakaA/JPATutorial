@@ -1,6 +1,7 @@
 package com.getjavajob.repository.impl;
 
 import com.getjavajob.repository.IDao;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Named;
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
         Query query = null;
         try {
             entityManager.getTransaction().begin();
-            query = entityManager.createQuery("SELECT t FROM " + getStringType() + " t");
+            query = entityManager.createQuery("SELECT t FROM " + getTypeName() + " t");
             entityManager.getTransaction().commit();
         } finally {
             if (entityManager.getTransaction().isActive()) {
@@ -57,6 +58,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
     public void insert(T entity) {
         EntityManager entityManager = this.factory.createEntityManager();
         try {
+            entityManager.getTransaction();
 //            entityManager.getTransaction().begin();
             System.out.println(entityManager.getTransaction().isActive());
             entityManager.persist(entity);
@@ -66,7 +68,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
         }
     }
 
-    private String getStringType() {
+    private String getTypeName() {
         return this.persistenceClass.getSimpleName();
     }
 
@@ -86,9 +88,16 @@ public abstract class AbstractDao<T> implements IDao<T> {
 
     @Override
     public void update(T entity) {
-        EntityManager entityManager = factory.createEntityManager();
-        System.out.println(entityManager.getTransaction().isActive());
-        entityManager.merge(entity);
+        EntityManager entityManager = this.factory.createEntityManager();
+        try {
+//            entityManager.getTransaction().begin();
+            entityManager.merge(entity);
+//            entityManager.getTransaction().commit();
+        } finally {
+//            if (entityManager.getTransaction().isActive()) {
+//                entityManager.getTransaction().rollback();
+//            }
+        }
     }
 
     public EntityManagerFactory getFactory() {

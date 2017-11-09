@@ -8,29 +8,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
-@Named
+@Controller
 @EnableWebMvc
 @RequestMapping(value = "/")
-public class Controller {
+public class MainController {
 
     private IService<User> service;
 
-    public Controller() {
+    public MainController() {
     }
 
     @Inject
-    public Controller(IService<User> service) {
+    public MainController(IService<User> service) {
         this.service = service;
     }
 
     @RequestMapping(value = "/add")
     public ModelAndView toAddUser() {
-        return new ModelAndView("/addUserForm");
+        return new ModelAndView("addUserForm");
     }
 
     @RequestMapping(value = "/saveChanges")
@@ -48,9 +49,9 @@ public class Controller {
         return modelAndView;
     }
 
-
-    @RequestMapping(value = "/addUserController")
-    public String addNewUser(@ModelAttribute("User") User newUser) {
+    @RequestMapping(value = "/addUser")
+    public String addNewUser(@ModelAttribute User newUser) {
+        System.out.println("newUser = " + newUser);
         this.service.insert(newUser);
         return "redirect:/add";
     }
@@ -58,9 +59,6 @@ public class Controller {
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public ModelAndView showAllExistsUsers() {
         List<User> list = this.service.fetchAll();
-        for (User user : list) {
-            System.out.println("user = " + user);
-        }
         ModelAndView modelAndView = new ModelAndView("showAll");
         modelAndView.addObject("listOfUsers", list);
         return modelAndView;

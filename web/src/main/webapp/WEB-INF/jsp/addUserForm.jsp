@@ -13,11 +13,11 @@
 </head>
 <body>
 
-<form action="<c:url value="/addUserController"/>" id="addUserForm" method="post">
+<form id="addUserForm" action="<c:url value="/addUser"/>" method="post">
     <label for="name">Enter the name : <input id="name" name="name" type="text"> </label><br/>
     <label for="lastName">Enter the lastName :<input id="lastName" name="lastName" type="text"> </label><br/>
     <label for="email">Enter email : <input id="email" name="email" type="email"> </label><br/>
-    <label for="listOfPhones">Enter phone : <input id="listOfPhones" name="listOfPhones" type="text"> </label><br/>
+    <label for="listOfPhones">Enter phone : <input id="listOfPhones" name="listOfPhones[0].number" type="text"> </label><br/>
     <label for="gender">Choose gender of new User :
         <select id="gender" name="gender">
             <option value="FEMALE">Женщина</option>
